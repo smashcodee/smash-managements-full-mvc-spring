@@ -1,0 +1,21 @@
+.navbar-container-custom {
+    margin-bottom: 4%;
+}
+.navbar-custom {
+    padding: 0 4em;
+}
+
+.navbar-custom > a {
+    font-size: 23px;
+    font-weight: 200;
+}
+
+.navbar-custom > a,
+.navbar-custom > ul > li > a{
+    color: #ED145B;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.navbar-custom .active {
+    background-color: #ED145B;
+}

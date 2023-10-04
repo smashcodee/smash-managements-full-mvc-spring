@@ -1,0 +1,17 @@
+.simple-footer-custom {
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: #ED145B;
+    margin-top: 4%;
+}
+.simple-footer-custom .footer-content-custom > h5,
+.simple-footer-custom .footer-links-custom h5,
+.simple-footer-custom .footer-copyright-custom > div,
+.simple-footer-custom .footer-copyright-custom > div > a {
+    color: #ED145B;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.simple-footer-custom .footer-content-custom > p {
+    font-family: 'Montserrat', sans-serif;
+}

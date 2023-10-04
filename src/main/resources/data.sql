@@ -1,0 +1,3 @@
+INSERT INTO TASKS(title, description, score, status) VALUES('CP4 - DevOps', 'Criar uma aplicacao web azure ci/cd e mostrar o app funcionando por um video.', 50, 60);
+INSERT INTO TASKS(title, description, score, status) VALUES('CP4 - .NET Elias', 'Entregar um app MVC .NET Core com conexao ao banco de dados usando o Entity Framework.', 80, 20);
+INSERT INTO TASKS(title, description, score, status) VALUES('CP4 - IOT', 'Criar um projeto IOT de uma camera monitoradora domestica que possua um microfone e saida de audio, aplicacao bancend rest api na azure, aplicacao front end mobile', 90, 0);

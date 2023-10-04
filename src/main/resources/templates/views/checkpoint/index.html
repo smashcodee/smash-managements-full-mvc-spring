@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layouts/head_layout :: head('Checkpoints')}"></head>
+<body class="">
+    <nav th:replace="~{layouts/navbar_layout :: navbar('checkpoint')}"></nav>
+
+    <main class="container">
+        <div class="card-panel teal white-text" th:if="${success}" th:text="${success}" ></div>
+        <div class="card-panel red white-text" th:if="${error}" th:text="${error}" ></div>
+
+        <div class="checkpoints-container">
+            <div class="container-header">
+                <h3>Checkpoints pendentes:</h3>
+            </div>
+            <ul>
+                <li th:each="cp : ${checkpoints}">
+                    <div class="card_horizontal">
+                        <div>
+                            <h4 th:text="${cp.title}">Title</h4>
+                            <p th:text="${cp.description}">description</p>
+                        </div>
+                        <div class="checkpoint-actions-container">
+                            <a class="btn red" th:href="'/checkpoint/delete/' + ${cp.id}">
+                                <i class="material-icons">delete</i>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <footer th:replace="~{layouts/footer_layout :: footer}"></footer>
+</body>
+</html>

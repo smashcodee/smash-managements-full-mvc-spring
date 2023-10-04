@@ -1,0 +1,23 @@
+.checkpoints-container {
+    width: 100%;
+    height: max-content;
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ED145B;
+    border-radius: 4px;
+    padding: 12px 38px;
+}
+
+
+.container-header {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #ED145B;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+}
+
+.checkpoints-container > .container-header > h3 {
+    font-size: 23px;
+}

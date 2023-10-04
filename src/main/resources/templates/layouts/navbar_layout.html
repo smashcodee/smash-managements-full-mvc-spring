@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layouts/head_layout :: head('')}"></head>
+<body>
+
+    <nav class="navbar-container-custom" th:fragment="navbar(activeLink)">
+        <div class="nav-wrapper black navbar-custom">
+            <a href="#" class="brand-logo">SMANAGEMENTS</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li th:classappend="${activeLink} == 'checkpoint' ? 'active' : ''"><a th:classappend="${activeLink} == 'checkpoint' ? white-text : ''" href="/checkpoint">Checkpoints</a></li>
+                <li th:classappend="${activeLink} == 'global' ? 'active' : ''"><a th:classappend="${activeLink} == 'global' ? white-text : ''" href="/global">Globals</a></li>
+                <li th:classappend="${activeLink} == 'sprint' ? 'active' : ''"><a th:classappend="${activeLink} == 'sprint' ? white-text : ''" href="/sprint">Sprints</a></li>
+                <li th:classappend="${activeLink} == 'me' ? 'active' : ''"><a th:classappend="${activeLink} == 'me' ? white-text : ''" href="/me">User</a></li>
+            </ul>
+        </div>
+    </nav>
+</body>
+</html>
+

@@ -1,0 +1,19 @@
+.card_horizontal {
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card_horizontal > div > h4 {
+    font-size: 17px;
+    font-weight: bold;
+}
+.card_horizontal > div > p {
+    font-size: 15px;
+}
+
+
+.checkpoint-actions-container {
+    margin-left: 2.2em;
+}
