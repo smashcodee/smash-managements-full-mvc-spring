@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{layouts/head_layout :: head('Checkpoints')}"></head>
-<body class="">
-    <nav th:replace="~{layouts/navbar_layout :: navbar('checkpoint')}"></nav>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org">
+<head th:replace="~{layouts/head_layout :: head('Globals')}"></head>
+<body>
+    <nav th:replace="~{layouts/navbar_layout :: navbar('global')}"></nav>
 
     <main class="container">
         <div class="card-panel teal white-text" th:if="${success}" th:text="${success}" ></div>
@@ -10,20 +10,20 @@
 
         <div class="task-container">
             <div class="container-header">
-                <h3>Checkpoints pendentes:</h3>
+                <h3>Globals pendentes:</h3>
             </div>
             <ul>
-                <div th:if="${checkpoints!= null and checkpoints.isEmpty() or checkpoints == null}">
-                    <p>NENHUM CHECKPOINT FOI CADASTRADO.</p>
+                <div th:if="${globals!= null and globals.isEmpty() or globals == null}">
+                    <p>NENHUMA GLOBAL FOI CADASTRADA.</p>
                 </div>
-                <li th:each="cp : ${checkpoints}">
+                <li th:each="gb : ${globals}">
                     <div class="card_horizontal">
                         <div>
-                            <h4 th:text="${cp.title}">Title</h4>
-                            <p th:text="${cp.description}">description</p>
+                            <h4 th:text="${gb.title}">Title</h4>
+                            <p th:text="${gb.description}">description</p>
                         </div>
-                        <div class="task-actions-container">
-                            <a class="btn red" th:href="'/checkpoint/delete/' + ${cp.id}">
+                        <div class="checkpoint-actions-container">
+                            <a class="btn red" th:href="'/global/delete/' + ${gb.id}">
                                 <i class="material-icons">delete</i>
                             </a>
                         </div>

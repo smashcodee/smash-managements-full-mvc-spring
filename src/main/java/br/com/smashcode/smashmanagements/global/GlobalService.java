@@ -1,4 +1,4 @@
-package br.com.smashcode.smashmanagements.checkpoint;
+package br.com.smashcode.smashmanagements.global;
 
 import br.com.smashcode.smashmanagements.task.ITaskRepository;
 import br.com.smashcode.smashmanagements.task.TaskEntity;
@@ -8,18 +8,18 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CheckpointService {
+public class GlobalService {
     @Autowired
     private ITaskRepository taskRepository;
 
     public List<TaskEntity> findAll() {
-        return taskRepository.findAllCheckpoints();
+        return taskRepository.findAllGlobals();
     }
 
-    public boolean delete(Integer checkpointId) {
-        var checkpoint = taskRepository.findById(checkpointId);
-        if(checkpoint.isEmpty()) return false;
-        taskRepository.delete(checkpoint.get());
+    public boolean delete(Integer globalId) {
+        var global = taskRepository.findById(globalId);
+        if(global.isEmpty()) return false;
+        taskRepository.delete(global.get());
         return true;
     }
 }
