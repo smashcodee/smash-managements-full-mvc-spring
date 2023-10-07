@@ -11,13 +11,18 @@
 
 
 .container-header {
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-bottom-color: #ED145B;
     margin-bottom: 30px;
     padding-bottom: 10px;
 }
 
-.task-container > .container-header > h3 {
+.task-container > .row-header > .container-header > h3 {
     font-size: 23px;
+}
+
+.btn-add-custom > i{
+    background-color: #ED145B;
+}
+
+.btn-custom-color {
+    background-color: #ED145B;
 }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layouts/head_layout :: head('New - Checkpoints')}"></head>
+<body>
+    <nav th:replace="~{layouts/navbar_layout :: navbar('checkpoint')}"></nav>
+
+    <main class="container">
+        <div class="card-panel teal white-text" th:if="${success}" th:text="${success}" ></div>
+        <div class="card-panel red white-text" th:if="${error}" th:text="${error}" ></div>
+
+        <div class="task-container">
+            <div class="row valign-wrapper">
+                <div class="col s1">
+                    <a href="/checkpoint">Voltar</a>
+                </div>
+                <div class="col s12 container-header">
+                    <h3 class="center-align">Cadastro de checkpoint</h3>
+                </div>
+            </div>
+
+            <form class="col s12" th:action="@{/checkpoint/action/create}" th:method="post" th:object="${checkpoint}">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="title" type="text" th:field="*{title}">
+                        <label class="active" for="title">Título</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input id="score" type="number" class="validate" th:field="*{score}">
+                        <label class="active" for="score">Score</label>
+                    </div>
+                </div>
+                <div class="row text-area-container-custom">
+                    <div class="input-field col s6">
+                        <textarea id="description" type="text" class="materialize-textarea" th:field="*{description}"></textarea>
+                        <label class="active" for="description">Descrição</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-custom-color">Criar</button>
+            </form>
+        </div>
+    </main>
+    <footer th:replace="~{layouts/footer_layout :: footer}"></footer>
+</body>
+</html>

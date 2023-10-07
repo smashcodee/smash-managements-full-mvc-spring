@@ -1,0 +1,7 @@
+.task-container > form,
+.task-container > form > div,
+.task-container > form > div > .text-area-container-custom,
+.task-container > form > div > .text-area-container-custom > div,
+.task-container > form > div > .text-area-container-custom > div > #description {
+        width: 100%;
+}
