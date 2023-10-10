@@ -21,19 +21,22 @@
             <form class="col s12" th:action="@{/checkpoint/action/create}" th:method="post" th:object="${checkpoint}">
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="title" type="text" th:field="*{title}">
+                        <input id="title" type="text" th:field="*{title}" th:classappend="${#fields.hasErrors('title')} ? invalid">
                         <label class="active" for="title">Título</label>
+                        <span class="helper-text red-text" th:errors="*{title}"></span>
                     </div>
 
                     <div class="input-field col s6">
-                        <input id="score" type="number" class="validate" th:field="*{score}">
+                        <input id="score" type="number" class="validate" th:field="*{score}" th:classappend="${#fields.hasErrors('score')} ? invalid">
                         <label class="active" for="score">Score</label>
+                        <span class="helper-text red-text" th:errors="*{score}"></span>
                     </div>
                 </div>
                 <div class="row text-area-container-custom">
                     <div class="input-field col s6">
-                        <textarea id="description" type="text" class="materialize-textarea" th:field="*{description}"></textarea>
+                        <textarea id="description" type="text" class="materialize-textarea" th:field="*{description}" th:classappend="${#fields.hasErrors('description')} ? invalid"></textarea>
                         <label class="active" for="description">Descrição</label>
+                        <span class="helper-text red-text" th:errors="*{description}"></span>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-custom-color">Criar</button>

@@ -1,11 +1,14 @@
 package br.com.smashcode.smashmanagements.checkpoint;
 
 import br.com.smashcode.smashmanagements.task.TaskEntity;
+import br.com.smashcode.smashmanagements.task.TaskPostRequest;
+import br.com.smashcode.smashmanagements.task.TaskService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
@@ -14,10 +17,10 @@ import java.util.Optional;
 @RequestMapping("/checkpoint")
 public class CheckpointController {
     @Autowired
-    private CheckpointService service;
+    private TaskService service;
     @GetMapping
     public String index(Model model) {
-        model.addAttribute("checkpoints", service.findAll());
+        model.addAttribute("checkpoints", service.findAll("CHECKPOINT"));
         return "views/checkpoint/index";
     }
 
@@ -39,8 +42,15 @@ public class CheckpointController {
     }
 
     @PostMapping("/action/create")
-    public String cadastroAction(@ModelAttribute("checkpoint") TaskEntity checkpoint, RedirectAttributes redirect) {
-        if(service.create(checkpoint)) {
+    public String cadastroAction(@ModelAttribute("checkpoint") @Valid TaskPostRequest checkpoint,
+                                 BindingResult result,
+                                 RedirectAttributes redirect) {
+
+        if(result.hasErrors()) {
+            return "views/checkpoint/new/cadastro";
+        }
+
+        if(service.create(checkpoint, "CHECKPOINT")) {
             redirect.addFlashAttribute("success", "Checkpoint criado com sucesso!");
         } else {
             redirect.addFlashAttribute("error", "Erro ao criar o checkpoint.");

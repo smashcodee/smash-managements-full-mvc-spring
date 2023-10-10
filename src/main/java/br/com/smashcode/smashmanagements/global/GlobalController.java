@@ -1,5 +1,6 @@
 package br.com.smashcode.smashmanagements.global;
 
+import br.com.smashcode.smashmanagements.task.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,11 +13,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/global")
 public class GlobalController {
     @Autowired
-    private GlobalService service;
+    private TaskService service;
 
     @GetMapping
     public String index(Model model) {
-        model.addAttribute("globals", service.findAll());
+        model.addAttribute("globals", service.findAll("GLOBAL"));
         return "views/global/index";
     }
 
