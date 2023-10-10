@@ -20,7 +20,7 @@ public class SprintController {
     }
 
     @GetMapping("/delete/{sprintId}")
-    public String delete(@PathVariable Integer sprintId, RedirectAttributes redirect) {
+    public String delete(@PathVariable Long sprintId, RedirectAttributes redirect) {
         if(service.delete(sprintId)) {
             redirect.addFlashAttribute("success", "Sprint foi apagada com sucesso.");
         } else {

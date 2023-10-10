@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 import java.util.UUID;
 
-public interface ITaskRepository extends JpaRepository<TaskEntity, Integer> {
+public interface ITaskRepository extends JpaRepository<TaskEntity, Long> {
 
     @Query(
             "SELECT c FROM TaskEntity c WHERE c.taskType = 'CHECKPOINT'"

@@ -21,8 +21,8 @@ public class CheckpointController {
         return "views/checkpoint/index";
     }
 
-    @GetMapping("/delete/{checkpointId}")
-    public String delete(@PathVariable Integer checkpointId, RedirectAttributes redirect) {
+    @GetMapping("action/delete/{checkpointId}")
+    public String delete(@PathVariable Long checkpointId, RedirectAttributes redirect) {
         if(service.delete(checkpointId)) {
             redirect.addFlashAttribute("success", "Checkpoint foi apagado com sucesso.");
         } else {
@@ -48,10 +48,9 @@ public class CheckpointController {
         return "redirect:/checkpoint";
     }
 
-    @GetMapping("/editar/{id}")
-    public String edicaoPage(Model model, @PathVariable Integer id, TaskEntity checkpoint, RedirectAttributes redirect) {
+    @GetMapping("/edit/{id}")
+    public String edicaoPage(Model model, @PathVariable("id") Long id, TaskEntity checkpoint, RedirectAttributes redirect) {
         TaskEntity entity;
-        System.out.println(id);
         Optional<TaskEntity> optional = service.findById(id);
         if(optional.isPresent()) {
             entity = optional.get();

@@ -27,7 +27,7 @@ public class CheckpointService {
         return true;
     }
 
-    public Optional<TaskEntity> findById(Integer id) {
+    public Optional<TaskEntity> findById(Long id) {
         return taskRepository.findById(id);
     }
 
@@ -35,7 +35,7 @@ public class CheckpointService {
         return taskRepository.findAllCheckpoints();
     }
 
-    public boolean delete(Integer checkpointId) {
+    public boolean delete(Long checkpointId) {
         var checkpoint = taskRepository.findById(checkpointId);
         if(checkpoint.isEmpty()) return false;
         taskRepository.delete(checkpoint.get());

@@ -16,7 +16,7 @@ public class SprintService {
         return taskRepository.findAllSprints();
     }
 
-    public boolean delete(Integer sprintId) {
+    public boolean delete(Long sprintId) {
         var sprint = taskRepository.findById(sprintId);
         if(sprint.isEmpty()) return false;
         taskRepository.delete(sprint.get());

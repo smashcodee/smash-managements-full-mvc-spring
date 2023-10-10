@@ -21,7 +21,7 @@ public class GlobalController {
     }
 
     @GetMapping("/delete/{globalId}")
-    public String delete(@PathVariable Integer globalId, RedirectAttributes redirect) {
+    public String delete(@PathVariable Long globalId, RedirectAttributes redirect) {
         if(service.delete(globalId)) {
             redirect.addFlashAttribute("success", "Global foi apagado com sucesso.");
         } else {

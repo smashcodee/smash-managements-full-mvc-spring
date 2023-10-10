@@ -16,7 +16,7 @@ public class GlobalService {
         return taskRepository.findAllGlobals();
     }
 
-    public boolean delete(Integer globalId) {
+    public boolean delete(Long globalId) {
         var global = taskRepository.findById(globalId);
         if(global.isEmpty()) return false;
         taskRepository.delete(global.get());
