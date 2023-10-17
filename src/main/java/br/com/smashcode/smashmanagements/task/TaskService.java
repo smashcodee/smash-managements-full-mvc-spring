@@ -39,6 +39,10 @@ public class TaskService {
         }
 
         entity.setStatus(0);
+        entity.setTitle(request.title());
+        entity.setScore(request.score());
+        entity.setDescription(request.description());
+
 
         taskRepository.saveAndFlush(entity);
         log.info("[ DB Persist ] - Checkpoint cadastrado com sucesso!");
@@ -76,5 +80,18 @@ public class TaskService {
         if(checkpoint.isEmpty()) return false;
         taskRepository.delete(checkpoint.get());
         return true;
+    }
+
+    public boolean update(Long id, TaskEntity entity, TaskPostRequest request) {
+        entity.setId(id);
+        entity.setTitle(request.title());
+        entity.setScore(request.score());
+        entity.setDescription(request.description());
+        entity.setUpdatedAt(LocalDateTime.now());
+        var persited = taskRepository.saveAndFlush(entity);
+        if(persited != null) {
+            return true;
+        }
+        return false;
     }
 }

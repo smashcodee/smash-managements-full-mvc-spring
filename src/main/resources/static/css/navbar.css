@@ -19,3 +19,12 @@
 .navbar-custom .active {
     background-color: #ED145B;
 }
+
+.avatar-a {
+    padding: 0;
+}
+.avatar {
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+}

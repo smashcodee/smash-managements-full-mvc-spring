@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-bt" xmlns:th="http://thymeleaf.org">
+<head th:replace="~{layouts/head_layout :: head('Login')}"></head>
+<body>
+<main class="container center">
+    <h5 class="my-3">Tem certeza que deseja sair?</h5>
+
+    <form th:action="@{/logout}" method="post">
+        <a href="/oauth2/authorization/github" class="btn">
+            <i class="material-icons left">chevron_left</i>
+            CANCELAR
+        </a>
+
+        <button class="btn">Sim, desejo sair.</button>
+    </form>
+</main>
+</body>
+</html>

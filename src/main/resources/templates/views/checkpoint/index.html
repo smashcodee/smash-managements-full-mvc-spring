@@ -8,10 +8,11 @@
     <div class="card-panel teal white-text" th:if="${success}" th:text="${success}" ></div>
     <div class="card-panel red white-text" th:if="${error}" th:text="${error}" ></div>
 
+    <p th:text="${user}"></p>
     <div class="task-container">
         <div class="row valign-wrapper row-header">
             <div class="col s12 container-header">
-                <h3>Checkpoints pendentes:</h3>
+                <h3>Checkpoints <span th:text="#{task.pending}"></span>:</h3>
             </div>
             <div class="col s1">
                 <a href="/checkpoint/criar" class="btn-floating btn-large waves-effect waves-light red btn-add-custom"><i class="material-icons">add</i></a>
@@ -39,11 +40,6 @@
         </ul>
     </div>
 </main>
-
-<footer th:replace="~{layouts/footer_layout :: footer}"></footer>
-</body>
-</html>
-
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var elems = document.querySelectorAll('.dropdown-trigger');
@@ -59,3 +55,8 @@
         M.Dropdown.init(elems, options);
     });
 </script>
+<footer th:replace="~{layouts/footer_layout :: footer}"></footer>
+</body>
+</html>
+
+

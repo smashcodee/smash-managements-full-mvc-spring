@@ -10,7 +10,29 @@
                 <li th:classappend="${activeLink} == 'checkpoint' ? 'active' : ''"><a th:classappend="${activeLink} == 'checkpoint' ? white-text : ''" href="/checkpoint">Checkpoints</a></li>
                 <li th:classappend="${activeLink} == 'global' ? 'active' : ''"><a th:classappend="${activeLink} == 'global' ? white-text : ''" href="/global">Globals</a></li>
                 <li th:classappend="${activeLink} == 'sprint' ? 'active' : ''"><a th:classappend="${activeLink} == 'sprint' ? white-text : ''" href="/sprint">Sprints</a></li>
-                <li th:classappend="${activeLink} == 'me' ? 'active' : ''"><a th:classappend="${activeLink} == 'me' ? white-text : ''" href="/me">User</a></li>
+
+                <li>
+                    <a class='dropdown-trigger avatar-a' href='#' data-target='dropdown1'>
+                        <img alt="user_avatar" th:src="${avatar}" class="avatar">
+                    </a>
+                </li>
+
+                <!-- Dropdown Structure -->
+                <ul id='dropdown1' class='dropdown-content'>
+                    <li><span th:text="${username}">nome do usuário</span></li>
+                    <li><a href="/logout"><i class="material-icons">logout</i>Sair</a></li>
+                </ul>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var elems = document.querySelectorAll('.dropdown-trigger');
+                        const options = {
+                            constrainWidth: false,
+                            coverTrigger: false
+                       }
+                        var instances = M.Dropdown.init(elems, options);
+                    });
+                </script>
             </ul>
         </div>
     </nav>
