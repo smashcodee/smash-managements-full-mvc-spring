@@ -1,5 +1,6 @@
 package br.com.smashcode.smashmanagements.task;
 
+import br.com.smashcode.smashmanagements.user.UserEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -28,5 +29,8 @@ public class TaskEntity {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
+    @ManyToOne
+    @JoinColumn(name = "github_user")
+    private UserEntity user;
     public TaskEntity() { }
 }

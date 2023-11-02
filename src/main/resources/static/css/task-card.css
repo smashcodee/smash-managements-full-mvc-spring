@@ -26,3 +26,13 @@
 .btn-custom-color {
     background-color: #ED145B;
 }
+
+.taks-actions-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.task {
+    margin-bottom: 40px;
+}

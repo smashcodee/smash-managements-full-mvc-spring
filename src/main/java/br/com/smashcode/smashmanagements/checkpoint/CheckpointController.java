@@ -3,6 +3,7 @@ package br.com.smashcode.smashmanagements.checkpoint;
 import br.com.smashcode.smashmanagements.task.TaskEntity;
 import br.com.smashcode.smashmanagements.task.TaskPostRequest;
 import br.com.smashcode.smashmanagements.task.TaskService;
+import br.com.smashcode.smashmanagements.user.UserEntity;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -121,6 +122,29 @@ public class CheckpointController {
         return "redirect:/checkpoint";
     }
 
+    @GetMapping("action/inc/{id}")
+    public String increment(@PathVariable Long id) {
+        service.increment(id);
+        return "redirect:/checkpoint";
+    }
+
+    @GetMapping("action/dec/{id}")
+    public String decrement(@PathVariable Long id) {
+        service.decrement(id);
+        return "redirect:/checkpoint";
+    }
+
+    @GetMapping("action/catch/{id}")
+    public String catchCheckpoint(@PathVariable Long id, @AuthenticationPrincipal OAuth2User user) {
+        service.catchTask(id, UserEntity.convert(user));
+        return "redirect:/checkpoint";
+    }
+
+    @GetMapping("action/drop/{id}")
+    public String dropCheckpoint(@PathVariable Long id, @AuthenticationPrincipal OAuth2User user) {
+        service.dropTask(id, UserEntity.convert(user));
+        return "redirect:/checkpoint";
+    }
 
 
     private String getMessage(String code){

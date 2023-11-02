@@ -15,26 +15,36 @@
                 <h3>Checkpoints <span th:text="#{task.pending}"></span>:</h3>
             </div>
             <div class="col s1">
-                <a href="/checkpoint/criar" class="btn-floating btn-large waves-effect waves-light red btn-add-custom"><i class="material-icons">add</i></a>
+                <a href="/checkpoint/criar" class="btn-floating btn-large waves-effect waves-light red btn-add-custom" title="criar checkpoint"><i class="material-icons">add</i></a>
             </div>
         </div>
         <ul>
             <div th:if="${checkpoints!= null and checkpoints.isEmpty() or checkpoints == null}">
                 <p>NENHUM CHECKPOINT FOI CADASTRADO.</p>
             </div>
-            <li th:each="checkpoint : ${checkpoints}">
+            <li th:each="checkpoint : ${checkpoints}" class="task">
+                <div class="progress">
+                    <div class="determinate" th:style="${'width:' + checkpoint.status + '%'}"></div>
+                </div>
                 <div class="card_horizontal">
                     <div>
                         <h4 th:text="${checkpoint.title}">Title</h4>
                         <p th:text="${checkpoint.description}">description</p>
                     </div>
                     <div class="task-actions-container">
-                        <a class='dropdown-trigger btn accent-1' th:data-target="'dropdown-' + ${checkpoint.id}">...</a>
+                        <a class='dropdown-trigger btn accent-1' th:data-target="'dropdown-' + ${checkpoint.id}" title="checkpoint options">...</a>
                         <ul th:id="'dropdown-' + ${checkpoint.id}" class='dropdown-content'>
                             <li><a th:href="@{'/checkpoint/edit/' + ${checkpoint.id}}"><i class="material-icons">edit</i>editar</a></li>
                             <li><a th:href="@{'/checkpoint/action/delete/'+ ${checkpoint.id}}"><i class="material-icons">delete</i>deletar</a></li>
                         </ul>
                     </div>
+                </div>
+                <div class="taks-actions-btn">
+                    <a class="btn" title="progredir checkpoint" th:href="${'/checkpoint/action/inc/' + checkpoint.id}"><i class="material-icons" >add</i></a>
+                    <a class="btn" title="regredir checkpoint" th:href="${'/checkpoint/action/dec/' + checkpoint.id}"><i class="material-icons">remove</i></a>
+                    <a class="btn purple" th:if="${checkpoint.user == null}" th:href="${'/checkpoint/action/catch/' + checkpoint.id}" title="pegar checkpoint"><i class="material-icons">pan_tool</i></a>
+                    <a class="btn amber" th:if="${checkpoint.user != null}" th:href="${'/checkpoint/action/drop/' + checkpoint.id}" title="pegar checkpoint"><i class="material-icons">do_not_touch</i></a>
+                    <img th:if="${checkpoint.user != null}" th:src="${checkpoint.user.avatarUrl}" class="avatar" alt="">
                 </div>
             </li>
         </ul>

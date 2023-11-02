@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org">
+<head th:replace="~{layouts/head_layout :: head('Checkpoints')}"></head>
+<body>
+    <div class="container">
+        <h3>Erro <span th:text="${status}"></span> 😭</h3>
+        <p th:text="${message}"></p>
+        <a class="btn" href="/checkpoint">
+            <i class="material-icons left">chevron_left</i>
+            Voltar para a home
+        </a>
+    </div>
+</body>
+</html>

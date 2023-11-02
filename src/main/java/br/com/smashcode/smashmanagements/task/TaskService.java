@@ -1,7 +1,11 @@
 package br.com.smashcode.smashmanagements.task;
 
+import br.com.smashcode.smashmanagements.user.UserEntity;
+import br.com.smashcode.smashmanagements.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -13,6 +17,9 @@ import java.util.Optional;
 public class TaskService {
     @Autowired
     private ITaskRepository taskRepository;
+
+    @Autowired
+    private UserService userService;
 
     public boolean create(TaskPostRequest request, String taskType) {
         TaskEntity entity = new TaskEntity();
@@ -93,5 +100,75 @@ public class TaskService {
             return true;
         }
         return false;
+    }
+
+    public void decrement(Long id) {
+        var optional = findById(id);
+        if(!optional.isPresent()) {
+            throw new RuntimeException("Tarefa não encontrada,");
+        }
+
+        var task = optional.get();
+        if(task.getStatus() == 0) {
+            throw new RuntimeException("O status não pode ser negativo.");
+        }
+
+        task.setStatus(task.getStatus() - 10);
+        taskRepository.save(task);
+    }
+
+    public void increment(Long id) {
+        var optional = findById(id);
+        if(!optional.isPresent()) {
+            throw new RuntimeException("Tarefa não encontrada,");
+        }
+
+        var task = optional.get();
+        if(task.getStatus() == 100) {
+            throw new RuntimeException("O status não pode ser maior do que 100%.");
+        }
+
+        task.setStatus(task.getStatus() + 10);
+        if(task.getStatus() == 100) {
+            var user = (OAuth2User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            userService.addScore(UserEntity.convert(user), task.getScore());
+        }
+
+        taskRepository.save(task);
+    }
+
+
+    public void catchTask(Long id, UserEntity user) {
+        var optional = findById(id);
+        if(!optional.isPresent()) {
+            throw new RuntimeException("Tarefa não encontrada.");
+        }
+
+        var task = optional.get();
+
+        if ( task.getUser() != null && task.getUser().equals(user))
+            throw new RuntimeException("você já selecionou essa tarefa");
+
+        if (task.getUser() != null)
+            throw new RuntimeException("tarefa já atribuída");
+
+        task.setUser(user);
+        taskRepository.save(task);
+    }
+
+    public void dropTask(Long id, UserEntity user) {
+        var optional = findById(id);
+        if(!optional.isPresent()) {
+            throw new RuntimeException("Tarefa não encontrada,");
+        }
+
+        var task = optional.get();
+
+        if(task.getUser() == null || !task.getUser().equals(user)) {
+            throw new RuntimeException("Impossível remover uma associação com uma tarefa não associada a ninguém.");
+        }
+
+        task.setUser(null);
+        taskRepository.save(task);
     }
 }
