@@ -159,12 +159,11 @@ public class TaskService {
     public void dropTask(Long id, UserEntity user) {
         var optional = findById(id);
         if(!optional.isPresent()) {
-            throw new RuntimeException("Tarefa não encontrada,");
+            throw new RuntimeException("Tarefa não encontrada.");
         }
 
         var task = optional.get();
-
-        if(task.getUser() == null || !task.getUser().equals(user)) {
+        if(task.getUser() == null ||!task.getUser().getName().equals(user.getName())) {
             throw new RuntimeException("Impossível remover uma associação com uma tarefa não associada a ninguém.");
         }
 
