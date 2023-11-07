@@ -163,7 +163,8 @@ public class TaskService {
         }
 
         var task = optional.get();
-        if(task.getUser() == null ||!task.getUser().getName().equals(user.getName())) {
+        System.out.println(user.getName());
+        if(task.getUser() == null) {
             throw new RuntimeException("Impossível remover uma associação com uma tarefa não associada a ninguém.");
         }
 
